@@ -1,0 +1,257 @@
+/*common*/
+
+.root {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.links-wrapper {
+  margin: 5px;
+}
+
+.link {
+  background-color: burlywood;
+  padding: 3px 15px;
+  color: white;
+  text-decoration: none;
+  margin: 5px 5px 5px 0;
+}
+
+.link:hover {
+  color: coral;
+}
+
+.submit {
+  background-color: burlywood;
+  color: white;
+  margin: 5px 5px 5px 0;
+  padding: 8px 15px;
+  border: none;
+  font-size: medium;
+  align-self: flex-end;
+}
+
+.submit:hover {
+  background-color: coral;
+}
+
+/*settings*/
+
+.settings-wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-content: space-between;
+  border: 1px solid beige;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: antiqueWhite;
+  width: 350px;
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-between;
+  align-content: space-between;
+  align-self: stretch;
+
+}
+
+.select {
+  font-size: medium;
+  box-shadow: none;
+  align-self: flex-end;
+  background-color: white;
+  width: 120px;
+  border: 1px coral;
+}
+
+.select:focus {
+  outline: none;
+}
+
+/*Game*/
+
+.card {
+  height: 128px;
+  width: 128px;
+}
+
+.stopwatch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 3;
+}
+
+.blocker {
+  position: absolute;
+  width: 600px;
+  height: 750px;
+  z-index: 2;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.cards-field.bisque {
+  background-color: bisque;
+}
+
+.win-form {
+  height: 150px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 15px 50px 15px 15px;
+  background-color: antiqueWhite;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 3;
+}
+
+.error {
+  background-color: lightpink;
+  color: crimson;
+  font-size: small;
+}
+
+.pause {
+  content: url("src/data/pause.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.resume {
+  content: url("src/data/resume.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/*Card*/
+
+.card-wrapper {
+  /*position: relative;*/
+}
+
+.card-wrapper.large {
+  width: 100px;
+  height: 100px;
+}
+
+.card-wrapper.medium {
+  width: 55px;
+  height: 55px;
+}
+
+.card-wrapper.small {
+  width: 35px;
+  height: 35px;
+}
+
+.flipper.flipped {
+  -webkit-transform: rotateY(180deg);
+}
+
+.flipper {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  z-index: 2;
+}
+
+.back {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.face {
+  -webkit-transform: rotateY(180deg);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes move-to-discard-pile {
+  50% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+    top: 10px;
+    left: 500px;
+    z-index: -1;
+  }
+}
+
+.move {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+}
+
+.in-discard-pile {
+  animation-name: move-to-discard-pile;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+/*Score*/
+
+.filters-wrapper {
+  border-left: 1px solid burlywood;
+  border-top-left-radius: 5px;
+}
+
+.filter {
+  background-color: antiquewhite;
+  padding: 0 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid burlywood;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+}
+
+.filter:hover {
+  background-color: cornsilk;
+}
+
+.score-table-wrapper {
+  background-color: antiquewhite;
+  border: 1px solid burlywood;
+}
+
+.score-table {
+  border-top: 1px solid burlywood;
+  border-collapse: collapse;
+  width: 400px;
+}
+
+.cell {
+  border: 1px solid burlywood;
+  padding: 3px;
+}
