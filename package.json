@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "kkdshka",
   "dependencies": {
+    "babel-preset-stage-2": "^6.24.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
