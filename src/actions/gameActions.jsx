@@ -11,3 +11,9 @@ export function tick() {
         type: actionTypes.TICK
     }
 }
+
+export function handleFlipperClick() {
+    return {
+        type:actionTypes.HANDLE_FLIPPER_CLICK,
+    }
+}
