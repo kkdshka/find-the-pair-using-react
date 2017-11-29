@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from '../actions/actions.jsx';
+import * as actions from '../actions/settingsActions.jsx';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -61,7 +61,6 @@ class Settings extends React.Component {
 
 
 }
-
 
 function mapDispatchToProps(dispatch) {
     return {

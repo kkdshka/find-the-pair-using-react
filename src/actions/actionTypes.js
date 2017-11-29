@@ -1,2 +1,4 @@
 export const SET_SETTINGS = 'SET_SETTINGS';
 export const GET_SETTINGS = 'GET_SETTINGS';
+export const HANDLE_PAUSE_BUTTON_CLICK = 'HANDLE_PAUSE_BUTTON_CLICK';
+export const TICK = 'TICK';
