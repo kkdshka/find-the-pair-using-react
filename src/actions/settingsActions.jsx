@@ -6,10 +6,3 @@ export function setSettings(settings) {
         payload: settings
     }
 }
-
-export function getSettings(settings) {
-    return {
-        type: actionTypes.GET_SETTINGS,
-        payload: settings
-    }
-}

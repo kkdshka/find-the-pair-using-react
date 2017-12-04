@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import Stopwatch from './stopwatch.jsx';
-import Card from './card.jsx';
+import GameField from './gameField.jsx';
 
 class Game extends React.Component {
     render() {
@@ -13,7 +13,7 @@ class Game extends React.Component {
                     <Link to={'/score'}>Score</Link>
                 </div>
                 <Stopwatch/>
-                <Card/>
+                <GameField/>
             </div>
         );
     }

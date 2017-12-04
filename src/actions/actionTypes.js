@@ -2,4 +2,5 @@ export const SET_SETTINGS = 'SET_SETTINGS';
 export const GET_SETTINGS = 'GET_SETTINGS';
 export const HANDLE_PAUSE_BUTTON_CLICK = 'HANDLE_PAUSE_BUTTON_CLICK';
 export const TICK = 'TICK';
-export const HANDLE_FLIPPER_CLICK = 'HANDLE_FLIPPER_CLICK';
+export const PARSE_CARD_BACK = 'PARSE_CARD_BACK';
+export const GET_CARDS = 'GET_CARDS';

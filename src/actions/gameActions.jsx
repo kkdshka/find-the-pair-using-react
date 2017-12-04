@@ -12,8 +12,22 @@ export function tick() {
     }
 }
 
-export function handleFlipperClick() {
+export function parseCardBack(cardBack) {
     return {
-        type:actionTypes.HANDLE_FLIPPER_CLICK,
+        type: actionTypes.PARSE_CARD_BACK,
+        payload: cardBack
+    }
+}
+
+export function getSettings(settings) {
+    return {
+        type: actionTypes.GET_SETTINGS,
+        payload: settings
+    }
+}
+
+export function getCards() {
+    return {
+        type: actionTypes.GET_CARDS,
     }
 }

@@ -3,15 +3,32 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/gameActions.jsx';
 
 class Card extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleFlipperClick = this.handleFlipperClick.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.parseCardBack(this.props.cardBack);
+    }
+
+    handleFlipperClick(flipper) {
+        if (flipper.currentTarget.className === 'flipper')
+            flipper.currentTarget.className = 'flipper flipped';
+        else if (flipper.currentTarget.className === 'flipper flipped') {
+            flipper.currentTarget.className = 'flipper';
+        }
+    }
+
     render() {
         return (
             <div className={'card-wrapper large'}>
-                <div className={this.props.flipperStatus} onClick={() => this.props.handleFlipperClick()}>
+                <div className={'flipper'} onClick={(flipper) => this.handleFlipperClick(flipper)}>
                     <div className={'card back'}>
-                        <img src={'./src/data/cardBacks/cardBack01.jpg'}/>
+                        <img src={this.props.cardBackSrc}/>
                     </div>
                     <div className={'card face'}>
-                        <img src={'./src/data/cardFaces/cardFace01.png'}/>
+                        <img src={this.props.cardFace}/>
                     </div>
                 </div>
             </div>
@@ -21,14 +38,15 @@ class Card extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        flipperStatus: state.cardReducer.flipperStatus
+        flipperStatus: state.cardReducer.flipperStatus,
+        cardBackSrc: state.cardReducer.cardBackSrc
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        handleFlipperClick: () => {
-            dispatch(actions.handleFlipperClick());
+        parseCardBack: (cardBack) => {
+            dispatch(actions.parseCardBack(cardBack));
         }
     }
 }
