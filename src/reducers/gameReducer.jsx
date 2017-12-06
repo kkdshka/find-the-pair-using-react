@@ -38,7 +38,12 @@ export function gameReducer(state = initialState, action) {
 }
 
 function saveScore(state) {
-    const scoreData = {playerName: state.playerName, score: state.score, fieldSize: state.settings.fieldSize};
+    const scoreData = {
+        playerName: state.playerName,
+        score: state.score,
+        fieldSize: state.settings.fieldSize,
+        date: (new Date()).toDateString()
+    };
     const allScoresData = JSON.parse(localStorage.getItem('score')) || [];
     allScoresData.push(scoreData);
     localStorage.setItem('score', JSON.stringify(allScoresData));

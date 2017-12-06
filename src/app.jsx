@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Settings from './components/settings.jsx';
 import Game from './components/game.jsx';
-import {Score} from './components/score.jsx';
+import Score from './components/score.jsx';
 import {NotFound} from './components/notfound.jsx';
 
 import {Provider} from 'react-redux';
