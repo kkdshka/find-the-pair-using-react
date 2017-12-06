@@ -12,6 +12,12 @@ export function tick() {
     }
 }
 
+export function resetStopwatch() {
+    return {
+        type: actionTypes.RESET_STOPWATCH
+    }
+}
+
 export function parseCardBack(cardBack) {
     return {
         type: actionTypes.PARSE_CARD_BACK,
@@ -29,5 +35,25 @@ export function getSettings(settings) {
 export function getCards() {
     return {
         type: actionTypes.GET_CARDS,
+    }
+}
+
+export function handleOnCardClick(card) {
+    return {
+        type: actionTypes.HANDLE_ON_CARD_CLICK,
+        payload: card
+    }
+}
+
+export function handleOnSaveScoreClick() {
+    return {
+        type: actionTypes.HANDLE_ON_SAVE_SCORE_CLICK
+    }
+}
+
+export function handleOnChangeName(name) {
+    return {
+        type: actionTypes.HANDLE_ON_CHANGE_NAME,
+        payload: name
     }
 }

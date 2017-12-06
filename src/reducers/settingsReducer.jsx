@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     settings: {
-        fieldSize: '4',
+        fieldSize: '2',
         fieldColor: 'bisque',
         cardsBack: 'pastel'
     }

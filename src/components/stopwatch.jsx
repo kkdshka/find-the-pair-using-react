@@ -28,6 +28,11 @@ class Stopwatch extends React.Component {
         clearInterval(this._intervalId);
     }
 
+    componentWillUnmount() {
+        this._stopTimer();
+        this.props.resetStopwatch();
+    }
+
     render() {
         return (
             <div id={'stopwatch'} className={'stopwatch'}>
@@ -56,6 +61,9 @@ function mapDispatchToProps(dispatch) {
         },
         tick: () => {
             dispatch(actions.tick());
+        },
+        resetStopwatch: () => {
+            dispatch(actions.resetStopwatch());
         }
     }
 }

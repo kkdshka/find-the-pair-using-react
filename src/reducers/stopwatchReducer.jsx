@@ -24,6 +24,8 @@ export function stopwatchReducer(state = initialState, action) {
                 seconds: state.seconds + 1,
                 time: formatTime(state.seconds)
             };
+        case actionTypes.RESET_STOPWATCH:
+            return resetStopwatch();
         default:
             return state;
     }
@@ -42,6 +44,15 @@ export function stopwatchReducer(state = initialState, action) {
             status: 'stopped',
             buttonName: 'resume'
         };
+    }
+
+    function resetStopwatch() {
+        return {
+            ...state,
+            status: 'stopped',
+            buttonName: 'resume',
+            seconds: 0
+        }
     }
 
     function formatTime(time) {

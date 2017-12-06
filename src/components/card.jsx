@@ -3,27 +3,34 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/gameActions.jsx';
 
 class Card extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleFlipperClick = this.handleFlipperClick.bind(this);
-    }
-
     componentWillMount() {
         this.props.parseCardBack(this.props.cardBack);
     }
 
-    handleFlipperClick(flipper) {
-        if (flipper.currentTarget.className === 'flipper')
-            flipper.currentTarget.className = 'flipper flipped';
-        else if (flipper.currentTarget.className === 'flipper flipped') {
-            flipper.currentTarget.className = 'flipper';
+    setCardClass() {
+        switch (this.props.settings.fieldSize) {
+            case '2':
+            case '4':
+                return 'card-wrapper large';
+                break;
+            case '6':
+            case '8':
+                return 'card-wrapper medium';
+                break;
+            case '10':
+            case '12':
+                return 'card-wrapper small';
+                break;
+            default:
+                return 'card-wrapper medium';
+                break;
         }
     }
 
     render() {
         return (
-            <div className={'card-wrapper large'}>
-                <div className={'flipper'} onClick={(flipper) => this.handleFlipperClick(flipper)}>
+            <div className={this.setCardClass()}>
+                <div className={'flipper'} data={this.props.cardFace} onClick={this.props.onClick}>
                     <div className={'card back'}>
                         <img src={this.props.cardBackSrc}/>
                     </div>
@@ -38,6 +45,7 @@ class Card extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        settings: state.settingsReducer.settings,
         flipperStatus: state.cardReducer.flipperStatus,
         cardBackSrc: state.cardReducer.cardBackSrc
     }
