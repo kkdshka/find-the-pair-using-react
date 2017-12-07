@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    filteredScoreData: []
+    filteredScoreData: filterScoreData('2', loadData())
 };
 
 export function scoreReducer(state = initialState, action) {
