@@ -4,13 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/settingsActions.jsx';
 
 class Settings extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit() {
         const settings = {
             fieldSize: this.refs.fieldSize.value,
             fieldColor: this.refs.fieldColor.value,
@@ -24,9 +18,8 @@ class Settings extends React.Component {
             <div>
                 <div className={'links-wrapper'}>
                     <Link to={'/score'} className={"link"}>Score</Link>
-                    <Link to={'/game'} className={"link"}>Start game</Link>
                 </div>
-                <form className={'settings-wrapper'} onSubmit={this.handleSubmit}>
+                <form className={'settings-wrapper'}>
                     <div className={'select-wrapper'}>
                         <label htmlFor={'field-size'}>Choose field size:</label>
                         <select className={'select'} id={'field-size'} ref={'fieldSize'}>
@@ -53,7 +46,7 @@ class Settings extends React.Component {
                             <option value={'rose'}>Rose</option>
                         </select>
                     </div>
-                    <input type="submit" className={'submit'} value="Save"/>
+                    <Link to={'/game'} className={"submit"} onClick={this.handleSubmit.bind(this)}>Start game</Link>
                 </form>
             </div>
         );

@@ -32,6 +32,7 @@
   border: none;
   font-size: medium;
   align-self: flex-end;
+  text-decoration: none;
 }
 
 .submit:hover {
