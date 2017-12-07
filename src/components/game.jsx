@@ -35,7 +35,7 @@ class Game extends React.Component {
                             cardFace={this.props.cardFaces[cardId]}
                             key={'card' + cardId.toString()}
                             data={'card' + cardId.toString()}
-                            onClick={(card) => this.props.handleOnCardClick(card, card.currentTarget.value)}
+                            onClick={(card) => this.props.handleOnCardClick(card.currentTarget, this.props.seconds)}
                         />
                     </td>
                 );
@@ -56,15 +56,25 @@ class Game extends React.Component {
         }
     }
 
+    renderError() {
+        if (this.props.isError) {
+            return (
+                <div className={'error'}>Enter your name!</div>
+            );
+        }
+    }
+
     renderWinForm() {
         if (this.props.isWin) {
             return (
                 <div className={'win-form'}>
                     <b>You win!</b>
+                    {this.renderError()}
                     <input
                         ref={'inputName'}
                         type={'text'}
                         placeholder={'Enter your name'}
+                        value={this.props.playerName}
                         onChange={(event) => this.props.handleOnChangeName(event.currentTarget.value)}
                     />
                     <b>Your score: {this.props.score}</b>
@@ -72,7 +82,7 @@ class Game extends React.Component {
                         type={'submit'}
                         className={'submit'}
                         value={'Save score'}
-                        onClick={this.props.handleOnSaveScoreClick()}
+                        onClick={this.props.handleOnSaveScoreClick}
                     />
                 </div>
             );
@@ -106,7 +116,10 @@ function mapStateToProps(state) {
         isBlocked: state.gameReducer.isBlocked,
         isWin: state.gameReducer.isWin,
         stopwatchStatus: state.stopwatchReducer.status,
-        score: state.gameReducer.score
+        score: state.gameReducer.score,
+        seconds: state.stopwatchReducer.seconds,
+        playerName: state.gameReducer.playerName,
+        isError: state.gameReducer.isError
     }
 }
 
@@ -118,8 +131,8 @@ function mapDispatchToProps(dispatch) {
         getCards: () => {
             dispatch(actions.getCards());
         },
-        handleOnCardClick: (card) => {
-            dispatch(actions.handleOnCardClick(card));
+        handleOnCardClick: (card, seconds) => {
+            dispatch(actions.handleOnCardClick(card, seconds));
         },
         handleOnSaveScoreClick: () => {
             dispatch(actions.handleOnSaveScoreClick());
@@ -129,9 +142,6 @@ function mapDispatchToProps(dispatch) {
         },
         resetGame: () => {
             dispatch(actions.resetGame());
-        },
-        stopStopwatch: () => {
-            dispatch(actions.handlePauseButtonClick());
         }
     }
 }

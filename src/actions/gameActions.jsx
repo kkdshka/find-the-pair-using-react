@@ -38,10 +38,13 @@ export function getCards() {
     }
 }
 
-export function handleOnCardClick(card) {
+export function handleOnCardClick(card, seconds) {
     return {
         type: actionTypes.HANDLE_ON_CARD_CLICK,
-        payload: card
+        payload: {
+            card: card,
+            time: seconds
+        }
     }
 }
 

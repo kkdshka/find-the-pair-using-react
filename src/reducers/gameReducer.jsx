@@ -13,7 +13,8 @@ const initialState = {
     score: 0,
     isWin: false,
     isBlocked: false,
-    playerName: ''
+    playerName: '',
+    isError: false
 };
 
 export function gameReducer(state = initialState, action) {
@@ -27,9 +28,9 @@ export function gameReducer(state = initialState, action) {
                 cardPairsOnTable: state.settings.fieldSize * state.settings.fieldSize / 2
             };
         case actionTypes.HANDLE_ON_SAVE_SCORE_CLICK:
-            return saveScore(state);
+            return saveScore(state, action.payload);
         case actionTypes.HANDLE_ON_CARD_CLICK:
-            return handleOnCardClick(action.payload.currentTarget, state);
+            return handleOnCardClick(action.payload.card, action.payload.time, state);
         case actionTypes.HANDLE_ON_CHANGE_NAME:
             return {...state, playerName: action.payload};
         case actionTypes.RESET_GAME:
@@ -54,24 +55,30 @@ function resetGame(state) {
         score: 0,
         isWin: false,
         isBlocked: false,
-        playerName: ''
+        playerName: '',
+        isError: false
     }
 }
 
 function saveScore(state) {
-    const scoreData = {
-        playerName: state.playerName,
-        score: state.score,
-        fieldSize: state.settings.fieldSize,
-        date: (new Date()).toDateString()
-    };
-    const allScoresData = JSON.parse(localStorage.getItem('score')) || [];
-    allScoresData.push(scoreData);
-    localStorage.setItem('score', JSON.stringify(allScoresData));
-    return state;
+    if (state.playerName !== '') {
+        const scoreData = {
+            playerName: state.playerName,
+            score: state.score,
+            fieldSize: state.settings.fieldSize,
+            date: (new Date()).toDateString()
+        };
+        const allScoresData = JSON.parse(localStorage.getItem('score')) || [];
+        allScoresData.push(scoreData);
+        localStorage.setItem('score', JSON.stringify(allScoresData));
+        window.location.href = '/';
+        return state;
+    } else {
+        return {...state, isError: true};
+    }
 }
 
-function handleOnCardClick(flipper, state) {
+function handleOnCardClick(flipper, time, state) {
     if (flipper.className !== 'flipper flipped' && flipper.className !== 'flipper in-discard-pile') {
         flipper.className += ' flipped';
         const flippedCards = state.flippedCards;
@@ -79,7 +86,7 @@ function handleOnCardClick(flipper, state) {
         if (flippedCards.length > 1) {
             if (state.flippedCards[0].getAttribute('data') === state.flippedCards[1].getAttribute('data')) {
                 discard(state.flippedCards);
-                return checkWin();
+                return checkWin(time);
             } else {
                 reverse(state.flippedCards);
                 return {...state, flippedCards: [], clicks: state.clicks + 1};
@@ -106,13 +113,14 @@ function handleOnCardClick(flipper, state) {
         }, 600);
     }
 
-    function checkWin() {
+    function checkWin(time) {
         if (state.cardPairsOnTable === 1) {
             return {
                 ...state,
                 score: calculateScore(
                     state.clicks,
-                    state.settings.fieldSize
+                    state.settings.fieldSize,
+                    time
                 ),
                 isWin: true,
                 isBlocked: true
@@ -120,7 +128,7 @@ function handleOnCardClick(flipper, state) {
         }
         else {
             return {
-            ...state,
+                ...state,
                 cardPairsOnTable: state.cardPairsOnTable - 1,
                 flippedCards: [],
                 clicks: state.clicks + 1
@@ -164,7 +172,6 @@ function shuffle(cards) {
     return cards;
 }
 
-// TODO: get time
-function calculateScore(clicks, fieldSize, time = 10) {
+function calculateScore(clicks, fieldSize, time) {
     return Math.round(Math.pow(10, fieldSize) / ((clicks / 2) * (time)));
 }

@@ -1,7 +1,7 @@
 {
   "name": "find-the-pair-using-react",
-  "description": "Find the pair game using react/redux/redux-saga",
-  "version": "0.1.0",
+  "description": "Find the pair game using react and redux",
+  "version": "1.0.0",
   "author": "kkdshka",
   "dependencies": {
     "babel-preset-stage-2": "^6.24.1",
