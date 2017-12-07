@@ -16,6 +16,10 @@ class Game extends React.Component {
         this.props.getCards();
     }
 
+    componentWillUnmount() {
+        this.props.resetGame();
+    }
+
     renderTableContent() {
         let cardId = 0;
         let rowId = 0;
@@ -122,6 +126,9 @@ function mapDispatchToProps(dispatch) {
         },
         handleOnChangeName: (name) => {
             dispatch(actions.handleOnChangeName(name));
+        },
+        resetGame: () => {
+            dispatch(actions.resetGame())
         }
     }
 }

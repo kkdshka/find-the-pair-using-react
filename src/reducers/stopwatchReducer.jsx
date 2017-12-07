@@ -49,9 +49,10 @@ export function stopwatchReducer(state = initialState, action) {
     function resetStopwatch() {
         return {
             ...state,
-            status: 'stopped',
-            buttonName: 'resume',
-            seconds: 0
+            status: 'running',
+            buttonName: 'pause',
+            seconds: 0,
+            time: '00:00:00'
         }
     }
 

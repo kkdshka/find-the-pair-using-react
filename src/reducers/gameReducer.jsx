@@ -32,8 +32,29 @@ export function gameReducer(state = initialState, action) {
             return handleOnCardClick(action.payload.currentTarget, state);
         case actionTypes.HANDLE_ON_CHANGE_NAME:
             return {...state, playerName: action.payload};
+        case actionTypes.RESET_GAME:
+            return resetGame(state);
         default:
             return state;
+    }
+}
+
+function resetGame(state) {
+    return {
+        ...state,
+        cardFaces: [],
+        settings: {
+            fieldSize: '',
+            fieldColor: '',
+            cardsBack: ''
+        },
+        flippedCards: [],
+        cardPairsOnTable: 0,
+        clicks: 0,
+        score: 0,
+        isWin: false,
+        isBlocked: false,
+        playerName: ''
     }
 }
 

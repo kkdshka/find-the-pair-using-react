@@ -1,5 +1,6 @@
 export const SET_SETTINGS = 'SET_SETTINGS';
 export const GET_SETTINGS = 'GET_SETTINGS';
+export const RESET_GAME = 'RESET_GAME';
 export const HANDLE_PAUSE_BUTTON_CLICK = 'HANDLE_PAUSE_BUTTON_CLICK';
 export const TICK = 'TICK';
 export const RESET_STOPWATCH = 'RESET_STOPWATCH';

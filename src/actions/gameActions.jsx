@@ -57,3 +57,9 @@ export function handleOnChangeName(name) {
         payload: name
     }
 }
+
+export function resetGame() {
+    return {
+        type: actionTypes.RESET_GAME
+    }
+}
