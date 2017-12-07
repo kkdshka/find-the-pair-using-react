@@ -84,7 +84,7 @@ class Game extends React.Component {
                 </div>
                 <Stopwatch/>
                 {this.renderBlocker()}
-                <table className={'game-field'}>
+                <table className={'game-field ' + this.props.settings.fieldColor}>
                     <tbody>
                     {this.renderTableContent()}
                     </tbody>

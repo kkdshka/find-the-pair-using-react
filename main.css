@@ -104,6 +104,10 @@
   background-color: bisque;
 }
 
+.game-field.aquamarine {
+  background-color: aquamarine;
+}
+
 .win-form {
   height: 150px;
   display: flex;
