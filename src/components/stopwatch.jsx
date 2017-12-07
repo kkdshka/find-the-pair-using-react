@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/gameActions.jsx';
 
 class Stopwatch extends React.Component {
-    componentWillMount() {
-        this._startTimer();
+    componentDidMount() {
+        this.startTimer();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -12,24 +12,24 @@ class Stopwatch extends React.Component {
         const nextStatus = nextProps.status;
 
         if (currStatus === 'stopped' && nextStatus === 'running') {
-            this._startTimer();
-        } else if (currStatus === 'running' && nextStatus === 'stopped') {
-            this._stopTimer();
+            this.startTimer();
+        } else if (currStatus === 'running' && nextStatus === 'stopped' || this.props.isWin) {
+            this.stopTimer();
         }
     }
 
-    _startTimer() {
-        this._intervalId = setInterval(() => {
+    startTimer() {
+        this.intervalId = setInterval(() => {
             this.props.tick();
         }, 1000);
     }
 
-    _stopTimer() {
-        clearInterval(this._intervalId);
+    stopTimer() {
+        clearInterval(this.intervalId);
     }
 
     componentWillUnmount() {
-        this._stopTimer();
+        this.stopTimer();
         this.props.resetStopwatch();
     }
 
@@ -50,7 +50,8 @@ function mapStateToProps (state) {
         time: state.stopwatchReducer.time,
         status: state.stopwatchReducer.status,
         seconds: state.stopwatchReducer.seconds,
-        buttonName: state.stopwatchReducer.buttonName
+        buttonName: state.stopwatchReducer.buttonName,
+        isWin: state.gameReducer.isWin
     }
 }
 

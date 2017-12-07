@@ -128,7 +128,10 @@ function mapDispatchToProps(dispatch) {
             dispatch(actions.handleOnChangeName(name));
         },
         resetGame: () => {
-            dispatch(actions.resetGame())
+            dispatch(actions.resetGame());
+        },
+        stopStopwatch: () => {
+            dispatch(actions.handlePauseButtonClick());
         }
     }
 }
