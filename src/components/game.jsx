@@ -9,6 +9,9 @@ import * as actions from '../actions/gameActions.jsx';
 
 class Game extends React.Component {
     componentWillMount() {
+        if(this.props.settings.fieldSize === '') {
+            window.location.href = '/settings';
+        }
         this.props.getSettings(this.props.settings);
         this.props.getCards();
     }

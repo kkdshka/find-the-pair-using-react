@@ -3,9 +3,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     cardFaces: [],
     settings: {
-        fieldSize: '2',
-        fieldColor: 'bisque',
-        cardsBack: 'pastel'
+        fieldSize: '',
+        fieldColor: '',
+        cardsBack: ''
     },
     flippedCards: [],
     cardPairsOnTable: 0,
