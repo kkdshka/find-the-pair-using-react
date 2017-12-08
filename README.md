@@ -22,7 +22,7 @@ $ npm run dev
 ```
 It automatically run application in your default browser using webpack developer server.
 
-###Build with
+### Build with
 
 * React
 * Redux
